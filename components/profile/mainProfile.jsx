@@ -54,7 +54,7 @@ const MainProfile = (props) => {
                                                 className={`form-control`}
                                                 id="username"
                                                 aria-describedby="emailUsername"
-                                                value={profile.username}
+                                                value={profile.username || ''}
                                                 readOnly
                                             />
                                         </div>
@@ -70,7 +70,7 @@ const MainProfile = (props) => {
                                                 className={`form-control`}
                                                 id="username"
                                                 aria-describedby="emailUsername"
-                                                value={profile.fullname}
+                                                value={profile.fullname || ''}
                                                 readOnly
                                             />
                                         </div>
@@ -86,7 +86,7 @@ const MainProfile = (props) => {
                                                 className={`form-control`}
                                                 id="username"
                                                 aria-describedby="emailUsername"
-                                                value={profile.email}
+                                                value={profile.email || ''}
                                                 readOnly
                                             />
                                         </div>
