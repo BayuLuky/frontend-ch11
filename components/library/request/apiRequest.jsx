@@ -33,7 +33,7 @@ const APIRequest = (method, url, data = {}, options = {}, isAbort = false) => {
     })
     .catch(async (err) => {
       console.log("err api", err)
-      switch (err.response.status) {
+      switch (err.response?.status) {
         case 401:
           store.dispatch({
             type: "set/islogging",

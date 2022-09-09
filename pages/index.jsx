@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import Head from "next/head"
-import Link from "next/link"
-import styles from "../styles/Home.module.css"
-import APIRequest from '../components/library/request/apiRequest'
-
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import APIRequest from "../components/library/request/apiRequest";
+import ReactPlayer from "react-player";
 export default function Home() {
-
-  const API = `${process.env.NEXT_PUBLIC_APIURL}users/score`
-  const [topscore, setTopscore] = useState([])
+  const API = `${process.env.NEXT_PUBLIC_APIURL}users/score`;
+  const [topscore, setTopscore] = useState([]);
 
   const getTopscore = () => {
-    APIRequest('GET', API)
-      .then(response => {
-        const topscore = response.scores
-        setTopscore(topscore)
+    APIRequest("GET", API)
+      .then((response) => {
+        const topscore = response.scores;
+        setTopscore(topscore);
       })
-      .catch(err => {
-        console.log('err', err)
-      })
-  }
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
 
   useEffect(() => {
-    return getTopscore()
-  }, [])
+    return getTopscore();
+  }, []);
 
   return (
     <>
@@ -278,7 +277,10 @@ export default function Home() {
           </div>
           <div className="row">
             {topscore.slice(0, 3).map((topscore, idx) => (
-              <div key={idx} className="col-lg-4 col-md-6 col-sm-8 offset-lg-8 offset-md-3 offset-sm-2 twittercards">
+              <div
+                key={idx}
+                className="col-lg-4 col-md-6 col-sm-8 offset-lg-8 offset-md-3 offset-sm-2 twittercards"
+              >
                 <div className="card text-white bg-dark mb-4">
                   <div className="card-header">
                     <img
@@ -309,6 +311,22 @@ export default function Home() {
         <div className="container">
           <div className="row d-flex">
             <div className="col-md-6 offset-md-6 text-left">
+            <ReactPlayer
+                volume={1}
+                muted={true}
+                loop={true}
+                config={{
+                  youtube: {
+                    playerVars: {
+                      autoplay: 1,
+                      src: "https://www.youtube.com/embed/tsgy7OsDARU&t",
+                      controls: 0,
+                      modestbranding: 1,
+                    },
+                  },
+                }}
+                url="https://www.youtube.com/embed/tsgy7OsDARU&t"
+              />
               <h3>Want to stay in touch?</h3>
               <h1>Newsletter Subscribe</h1>
               <p>
@@ -338,11 +356,12 @@ export default function Home() {
                   </button>
                 </div>
               </form>
+           
             </div>
           </div>
         </div>
       </div>
       {/* End Newsletter Content */}
     </>
-  )
+  );
 }

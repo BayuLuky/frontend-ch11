@@ -3,37 +3,103 @@ import { connect } from "react-redux";
 import Head from "next/head"
 import Link from "next/link"
 import APIRequest from '../../components/library/request/apiRequest'
+import { useRouter } from "next/router";
+import { IKImage } from "imagekitio-react"
+
 
 const mapStateToProps = (state, ownProps) => ({
     stateObject: state
 })
 
 const MainProfile = (props) => {
-    // const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
-    // const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
-    // const [profile, setProfile] = useState([])
+    const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
 
-    // const getProfile = () => {
-    //     APIRequest('GET', API)
-    //         .then(response => {
-    //             const profile = response.data
-    //             setProfile(profile)
-    //         })
-    //         .catch(err => {
-    //             console.log('err', err)
-    //         })
-    // }
+    /*   const dataUser = {
+          id:21
+      } */
+    const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
+    const [profile, setProfile] = useState([])
+    const getProfile = () => {
+        APIRequest('GET', API)
+            .then(response => {
+                console.log(response)
+                const profile = response.data
+                setProfile(profile)
+            })
+            .catch(err => {
+                console.log('err', err)
+            })
+    }
 
-    // useEffect(() => {
-    //     return getProfile()
-    // }, [])
+    useEffect(() => {
+        return getProfile()
+    }, [])
+
 
     return (
         <React.Fragment>
+            <head>
+                <link rel="stylesheet" href="css/Profile.css" />
+            </head>
             <div>
 
                 {/* Start Profile */}
-                <div className="jumbotron jumbotron-fluid bg-image headergame" id="login">
+                <div className='background'>
+                    <div className='profile-container'>
+                        <div className='user-data'>
+                            <div>
+                                <IKImage className="profile-pic"
+                                    urlEndpoint="https://ik.imagekit.io/92lyfgj0t"
+                                    src={dataUser?.img_url ? dataUser.img_url : "https://ik.imagekit.io/92lyfgj0t/blank-profile-picture-973460__340_-4k_Y18nB.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1662622610933"}
+                                    transformation={[{
+                                        h: "150",
+                                        w: "150",
+                                        r: "max"
+
+                                    }]}
+
+                                    laoding="lazy"
+                                />
+                            </div>
+                            <div>
+                                <h2 className='data-title'>USER ID</h2>
+                                <p>{profile?.id}</p>
+                            </div>
+                            <div>
+                                <h2 className='data-title'>USERNAME</h2>
+                                <p>{profile?.username}</p>
+                            </div>
+                            <div>
+                                <h2 className='data-title'>FULLNAME</h2>
+                                <p>{profile?.fullname}</p>
+                            </div>
+                        </div>
+                        <div className='user-bio'>
+                            <div>
+                                <h2 className='data-title'>BIO</h2>
+                                <p>{profile?.bio ? profile?.bio : "User To Lazy To Write Bio"}</p>
+                            </div>
+                        </div>
+
+                        <div className='user-data'>
+                            <div>
+                                <h2 className='data-title'>TOTAL SCORE</h2>
+                                <p>{profile?.total_score ? profile?.total_score : "No Score Yet"}</p>
+                            </div>
+                            <div className="button-container">
+                                <Link href={"/profilechange"}>
+                                    <button className='edit-button'>EDIT</button>
+                                </Link>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+                {/* <div className="jumbotron jumbotron-fluid bg-image headergame" id="login">
                     <div className="mt-5">
                         <h1>Profile</h1>
                         <div className="row">
@@ -89,21 +155,19 @@ const MainProfile = (props) => {
                                             />
                                         </div>
                                         <div className="d-grid mt-5">
-                                            <Link href={"/profile/update"} style={{ cursor: "pointer" }}>
-                                                <button
-                                                    className="btn btn-warning btn-login font-weight-bold text-uppercase w-100 "
-                                                    type="submit"
-                                                >
-                                                    Update Profile
-                                                </button>
-                                            </Link>
+                                            <button
+                                                className="btn btn-warning btn-login font-weight-bold text-uppercase w-100 "
+                                                type="submit"
+                                            >
+                                                Update Profile
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* End Profile */}
             </div>
         </React.Fragment>
