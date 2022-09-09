@@ -37,6 +37,7 @@ const RegisterForm = (props) => {
         'Access-Control-Allow-Origin': '*'
       }
     }).then(response => {
+      
       Swal.fire({
         title: "Berhasil ditambahkan",
         icon: "success",
@@ -49,7 +50,9 @@ const RegisterForm = (props) => {
           router.push('/login')
         }
       })
+      
     }).catch(error => {
+      window.console.log(error)
       Swal.fire({
         title: "Terjadi kesalahan!",
         icon: "error",

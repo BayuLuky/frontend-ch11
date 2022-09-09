@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@500&family=Titillium+Web:wght@300;700&display=swap');
+
+ .background{
+    min-height: 100vh;
+    background-image: url('../assets//main-bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.profile-pic{
+    margin-bottom: 2rem;
+}
+.profile-container{
+    background-color: rgba(0, 0, 0, 0.576);
+    width: 60vw;
+    height: 60vh;
+    border-radius: 8px;
+    padding: 30px 2rem;
+    color: white;
+    font-weight: 600;
+    
+}
+.user-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.data-title{
+    color: rgb(193, 193, 193)!important;
+}
+.user-bio{
+    display: flex;
+    justify-content: flex-start;
+}
+.button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 50%;
+align-items: end;
+}
+.edit-button{
+    width: 80%;
+    height: 40%;
+    background-color: #FFB343;
+    border: none;
+    padding: 10px;
+    font-weight: bold; 
+    font-size: 16px; /*1366x1.18=16.1*/
+    color: black;
+}
