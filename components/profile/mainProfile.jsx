@@ -9,24 +9,24 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const MainProfile = (props) => {
-    const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
-    const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
-    const [profile, setProfile] = useState([])
+    // const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
+    // const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
+    // const [profile, setProfile] = useState([])
 
-    const getProfile = () => {
-        APIRequest('GET', API)
-            .then(response => {
-                const profile = response.data
-                setProfile(profile)
-            })
-            .catch(err => {
-                console.log('err', err)
-            })
-    }
+    // const getProfile = () => {
+    //     APIRequest('GET', API)
+    //         .then(response => {
+    //             const profile = response.data
+    //             setProfile(profile)
+    //         })
+    //         .catch(err => {
+    //             console.log('err', err)
+    //         })
+    // }
 
-    useEffect(() => {
-        return getProfile()
-    }, [])
+    // useEffect(() => {
+    //     return getProfile()
+    // }, [])
 
     return (
         <React.Fragment>
@@ -51,7 +51,8 @@ const MainProfile = (props) => {
                                                 type="text"
                                                 className={`form-control`}
                                                 aria-describedby="emailUsername"
-                                                value={profile.username || ''}
+                                                // value={profile.username || ''}
+                                                value={''}
                                                 readOnly
                                             />
                                         </div>
@@ -66,7 +67,8 @@ const MainProfile = (props) => {
                                                 type="text"
                                                 className={`form-control`}
                                                 aria-describedby="emailUsername"
-                                                value={profile.fullname || ''}
+                                                // value={profile.fullname || ''}
+                                                value={''}
                                                 readOnly
                                             />
                                         </div>
@@ -81,7 +83,8 @@ const MainProfile = (props) => {
                                                 type="text"
                                                 className={`form-control`}
                                                 aria-describedby="emailUsername"
-                                                value={profile.email || ''}
+                                                // value={profile.email || ''}
+                                                value={''}
                                                 readOnly
                                             />
                                         </div>
