@@ -9,24 +9,24 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const MainProfile = (props) => {
-    // const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
-    // const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
-    // const [profile, setProfile] = useState([])
+    const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {}
+    const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser.id}`
+    const [profile, setProfile] = useState([])
 
-    // const getProfile = () => {
-    //     APIRequest('GET', API)
-    //         .then(response => {
-    //             const profile = response.data
-    //             setProfile(profile)
-    //         })
-    //         .catch(err => {
-    //             console.log('err', err)
-    //         })
-    // }
+    const getProfile = () => {
+        APIRequest('GET', API)
+            .then(response => {
+                const profile = response.data
+                setProfile(profile)
+            })
+            .catch(err => {
+                console.log('err', err)
+            })
+    }
 
-    // useEffect(() => {
-    //     return getProfile()
-    // }, [])
+    useEffect(() => {
+        return getProfile()
+    }, [])
 
     return (
         <React.Fragment>
@@ -50,10 +50,8 @@ const MainProfile = (props) => {
                                             <input
                                                 type="text"
                                                 className={`form-control`}
-                                                id="username"
                                                 aria-describedby="emailUsername"
-                                                // value={profile.username || ''}
-                                                value={''}
+                                                value={profile.username || ''}
                                                 readOnly
                                             />
                                         </div>
@@ -67,10 +65,8 @@ const MainProfile = (props) => {
                                             <input
                                                 type="text"
                                                 className={`form-control`}
-                                                id="username"
                                                 aria-describedby="emailUsername"
-                                                // value={profile.fullname || ''}
-                                                value={''}
+                                                value={profile.fullname || ''}
                                                 readOnly
                                             />
                                         </div>
@@ -84,10 +80,8 @@ const MainProfile = (props) => {
                                             <input
                                                 type="text"
                                                 className={`form-control`}
-                                                id="username"
                                                 aria-describedby="emailUsername"
-                                                // value={profile.email || ''}
-                                                value={''}
+                                                value={profile.email || ''}
                                                 readOnly
                                             />
                                         </div>
