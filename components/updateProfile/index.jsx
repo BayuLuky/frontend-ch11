@@ -9,9 +9,12 @@ const mapStateToProps = (state, ownProps) => ({
   stateObject: state
 })
 function Update(props) {
-  const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {} 
+
+  const dataUser = props.stateObject?.user !== 'undefined' ? props.stateObject?.user : {} 
   const API = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser?.id}`;
-  const token = window.localStorage.getItem("game_identifier")
+  
+  const [token,setToken] = useState("") 
+ 
   const [profile, setProfile] = useState([]);
   const [change,setChange]=useState({
     username:"",
@@ -33,7 +36,7 @@ function Update(props) {
   const getProfile = () => {
     APIRequest("GET", API)
       .then((response) => {
-        const profile = response.data;
+        const profile = response?.data;
         setProfile(profile);
       })
       .catch((err) => {
@@ -42,7 +45,11 @@ function Update(props) {
   };
 
   useEffect(() => {
+    if(typeof window !== "undefined"){
+      setToken(window.localStorage.getItem("game_identifier"))
+      }
     return getProfile();
+   
   }, []);
   return (
     <>
@@ -65,7 +72,7 @@ function Update(props) {
                       className={`form-control`}
                       id="username"
                       aria-describedby="emailUsername"
-                      placeholder={profile.username}
+                      placeholder={profile?.username}
                       onChange={(e)=>{
                         setChange({...change,username:e.target.value})
                  
@@ -84,7 +91,7 @@ function Update(props) {
                       className={`form-control`}
                       id="username"
                       aria-describedby="emailUsername"
-                      placeholder={profile.fullname}
+                      placeholder={profile?.fullname}
                       onChange={(e)=>{
                         setChange({...change,fullname:e.target.value})
                    
@@ -104,7 +111,7 @@ function Update(props) {
                       className={`form-control`}
                       id="username"
                       aria-describedby="emailUsername"
-                      placeholder={profile.email}
+                      placeholder={profile?.email}
                       onChange={(e)=>{
                         setChange({...change,email:e.target.value})
                         console.log(change)
