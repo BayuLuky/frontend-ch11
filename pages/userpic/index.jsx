@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
 const ImageKit = require("imagekit");
 function Upload(props) {
   const dataUser = props.stateObject.user !== 'undefined' ? props.stateObject.user : {} 
-  
+  console.log(dataUser)
   const URL = `${process.env.NEXT_PUBLIC_APIURL}users/${dataUser?.id}`
   const router = useRouter()
   const [file, setFile] = useState("");
@@ -93,7 +93,7 @@ function Upload(props) {
                   />
                   <h3 style={{
                     margin:"1rem 0"
-                  }}>SAEPUL</h3>
+                  }}>{dataUser?.username}</h3>
                   <div
                     style={{
                       display: "flex",
