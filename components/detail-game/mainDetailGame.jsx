@@ -64,7 +64,7 @@ const DetailGame = (props) => {
                   </div>
                   {dataUser ?
                     (
-                      <Link href={`${process.env.NEXT_PUBLIC_BASEURL}game`}>
+                      <Link href={"/game"}>
                         <a className="btn btn-warning font-weight-bold text-uppercase w-100">
                           Play Game
                         </a>
